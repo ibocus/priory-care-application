@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import type { ApplicationData } from '../src/types';
+import type { ApplicationData } from '../src/types.js';
 
 function getClient() {
   const url = process.env.SUPABASE_URL;

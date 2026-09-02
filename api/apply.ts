@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { saveApplication } from '../server/supabase';
-import { sendApplicationEmail } from '../server/email';
-import { sendWhatsAppNotification } from '../server/whatsapp';
-import type { ApplicationData } from '../src/types';
+import { saveApplication } from '../server/supabase.js';
+import { sendApplicationEmail } from '../server/email.js';
+import { sendWhatsAppNotification } from '../server/whatsapp.js';
+import type { ApplicationData } from '../src/types.js';
 
 function isApplicationData(value: unknown): value is ApplicationData {
   if (!value || typeof value !== 'object') return false;
