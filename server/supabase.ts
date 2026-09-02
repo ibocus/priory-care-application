@@ -12,7 +12,7 @@ function getClient() {
 
 export async function saveApplication(referenceId: string, data: ApplicationData): Promise<void> {
   const supabase = getClient();
-  const { error } = await supabase.from('applications').insert({
+  const { error } = await supabase.from('priory_care_applications').insert({
     reference_id: referenceId,
     applicant_name: [data.personal.firstName, data.personal.lastName].filter(Boolean).join(' '),
     email: data.contact.email1,
