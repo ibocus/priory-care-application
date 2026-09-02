@@ -73,6 +73,7 @@ export default function App() {
   const [attemptedNext, setAttemptedNext] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState<{ referenceId: string } | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const currentStep = STEPS[stepIndex];
   const isReviewStep = currentStep.id === 'review';
@@ -109,11 +110,14 @@ export default function App() {
       return;
     }
     setSubmitting(true);
+    setSubmitError(null);
     try {
       const result = await submitApplication(data);
       setSubmitted(result);
       clearDraft();
       clearStep();
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -124,6 +128,7 @@ export default function App() {
     setStepIndex(() => 0);
     setSubmitted(null);
     setAttemptedNext(false);
+    setSubmitError(null);
   };
 
   const handleStartNew = () => resetAll();
@@ -206,6 +211,11 @@ export default function App() {
         {attemptedNext && Object.keys(errors).length > 0 && (
           <p className="app-nav__error" role="alert">
             Please fix the highlighted fields before continuing.
+          </p>
+        )}
+        {submitError && (
+          <p className="app-nav__error" role="alert">
+            {submitError}
           </p>
         )}
       </main>

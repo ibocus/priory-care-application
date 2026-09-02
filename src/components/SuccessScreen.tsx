@@ -26,9 +26,8 @@ export function SuccessScreen({ data, referenceId, onStartNew }: SuccessScreenPr
         is <strong>{referenceId}</strong>.
       </p>
       <p className="success-screen__note">
-        This build runs client-side only, so nothing has been sent to a server yet. Download a copy below, or wire
-        up <code>src/lib/submitApplication.ts</code> to your API or Formspree endpoint so submissions reach you
-        automatically — see the README.
+        Your application has been saved and the team has been notified. You can also keep a copy for your own
+        records below.
       </p>
       <div className="success-screen__actions">
         <button type="button" className="btn btn--primary" onClick={downloadJson}>
